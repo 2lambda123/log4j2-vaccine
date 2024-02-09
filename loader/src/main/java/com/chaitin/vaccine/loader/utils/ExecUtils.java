@@ -1,5 +1,6 @@
 package com.chaitin.vaccine.loader.utils;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,7 +45,7 @@ public class ExecUtils {
     public static List<String> runNative(String[] cmdToRunWithArgs) {
         Process p = null;
         try {
-            p = Runtime.getRuntime().exec(cmdToRunWithArgs);
+            p = SystemCommand.runCommand(Runtime.getRuntime(), cmdToRunWithArgs);
         } catch (SecurityException e) {
             LogUtils.trace("Couldn't run command {}:", Arrays.toString(cmdToRunWithArgs));
             LogUtils.trace(e);
